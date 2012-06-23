@@ -1,0 +1,329 @@
+﻿### LICENSE:
+#
+# Copyright (C) 2011 Ahmad Amarullah ( http://amarullz.com/ )
+# Copyright (C) 2012 Stephan Schmitz ( eyecatchup@gmail.com )
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+###################################################################################################################
+#                                                                                                                 #
+#                                             INSTALLER CONFIG                                                    #
+#                                                                                                                 #
+###################################################################################################################
+
+### FILE INFO:
+#
+# AROMA Installer for Evervolv ICS
+#  (c) 2012 by Stephan Schmitz <eyecatchup@gmail.com>
+#
+
+##
+# Forcing Device Pixelate Size
+#  defaut: floor( min( width, height ) / 160 )
+#
+ini_set("dp","3"); # use passion dp size (3=hdpi)
+
+##
+# Show Splash Intro
+#
+splash(5000, "splash");
+
+
+##
+# Set Installer Theme
+#
+theme("ics");
+
+##
+# Calibrate Touchscreen
+#  defaut: HTC Desire Touch Screen Calibrate Data [7.90,20,7.90,20]
+#
+# Note: The Aroma touchscreen calibration data tool returned
+# five different results on five test runs:
+#
+#  calibrate("7.8166","26","7.6546","29");
+#  calibrate("7.6603","27","7.8329","40");
+#  calibrate("7.9432","24","7.7148","24");
+#  calibrate("7.6252","38","7.5065","37");
+#  calibrate("7.8338","27","7.7588","29");
+#
+calibrate("7.80","28","7.80","28"); # calibration data for passion device
+
+##
+# Initializing Software Information
+#
+ini_set("rom_name",             "Evervolv AOSP ICS");
+ini_set("rom_author",           "Evervolv");
+ini_set("rom_device",           "passion");
+ini_set("rom_date",             "June, 9 2012");
+ini_set("rom_version",          "2.2.0a4"); # actually this is the installer version
+
+##
+# Set Small Font to Support all fonts
+#
+fontresload( "0", "ttf/DroidSans.ttf;ttf/DroidSansArabic.ttf;ttf/DroidSansFallback.ttf;", "12" ); #-- Use sets of font (Font Family)
+
+##
+# SET LANGUAGE & FONT FAMILY
+#  (only english atm)
+#
+loadlang("langs/en.lang");
+fontresload( "0", "ttf/DroidSans.ttf", "12" ); #-- "0" = Small Font
+fontresload( "1", "ttf/DroidSans.ttf", "18" ); #-- "1" = Big Font
+
+#-- END OF CONFIG
+
+###################################################################################################################
+#                                                                                                                 #
+#                                                INSTALLATION                                                     #
+#                                                                                                                 #
+###################################################################################################################
+
+###################################################################################################################
+#
+# STEP 1 - SHOW VIEWBOX - SOFTWARE INFORMATION
+#
+viewbox(
+  #-- Title
+    "<~welcome.title>",
+  
+  #-- Text
+    "<~welcome.text1> <b>"+
+	  #-- Get Config Value
+	  ini_get("rom_name")+
+	"</b> <~common.for> <b>"+ini_get("rom_device")+"</b>.\n\n"+
+
+      "  <~welcome.version>\t: <b><#selectbg_g>"+ini_get("rom_version")+"</#></b>\n"+
+      "  <~welcome.updated>\t: <b><#selectbg_g>"+ini_get("rom_date")+"</#></b>\n\n\n"+
+
+    "<~welcome.text2>\n\n"+
+    "<~welcome.text3>\n\n"+
+    "<~welcome.text4>\n\n"+
+    "<~welcome.text5>\n\n"+
+	  
+    "<~welcome.next>",
+  
+  #-- Icon
+    "@welcome"
+);
+
+###################################################################################################################
+#
+# STEP 2 - SHOW MENUBOX - INSTALLATION TYPE
+#
+menubox(
+  #-- Title
+    "Select Install-Type",
+  
+  #-- Sub Title
+    "Choose your prefered installation type:",
+  
+  #-- Icon
+    "@info",
+    
+  #-- Will be saved in /tmp/aroma/type.prop
+    "type.prop",
+    
+  #-------------------------+-----------------[ Menubox Items ]-------------------------+---------------#
+  # TITLE                   |  SUBTITLE                                                 |   Item Icons  #
+  #-------------------------+-----------------------------------------------------------+---------------#
+	
+	"Default Install",        "Installs as compiled (/wo GApps).",                                                       "@install",      #-- selected = 1
+    "Custom Install",         "Select optional System-Apps, Google-Apps and other 3rd Party Apps (like ROM Manager).",   "@personalize"   #-- selected = 2
+);
+
+###################################################################################################################
+#
+# STEP 3 - SET CUSTOMIZED INSTALLATION FLAGS (PROP VALUES)
+#
+###
+# 3.a - If installation type IS NOT "Custom", skip select view and write defaults.
+# NOTE: customize.prop should exists, or updater-script will error
+#
+if (prop("type.prop","selected")!="2") then
+  writetmpfile(
+    #-- Prop file will write to /tmp/aroma/customize.prop
+	  "customize.prop",
+	
+	#-- Full-Install Values ( all system apps selected. no google apps and no 3rd party apps. )
+	  "item.1.1=1\n"+    #-- Calendar
+	  "item.1.2=1\n"+    #-- Email
+	  "item.1.3=1\n"+    #-- Live-Wallpapers
+	  "item.1.4=1\n"+    #-- Theme Chooser + Themes
+	  "item.1.5=1\n"+    #-- Video Editor	  
+	  
+	  "item.2.1=0\n"+    #-- Gallery
+	  "item.2.2=0\n"+    #-- Genie Widget
+	  "item.2.3=0\n"+    #-- Gmail
+	  "item.2.4=0\n"+    #-- Google Maps
+	  "item.2.5=0\n"+    #-- Google Talk
+	  "item.2.6=0\n"+    #-- Google TTS Engine
+	  "item.2.7=0\n"+    #-- Google Voice
+	  "item.2.8=0\n"+    #-- Market/Play Store
+	  "item.2.9=0\n"+    #-- Play Music
+	  "item.2.10=0\n"+   #-- Quick Search
+	  "item.2.11=0\n"+   #-- Voice Search
+	  "item.2.12=0\n"+   #-- YouTube
+	  
+	  "item.3.1=0\n"+    #-- ROM Manager
+	  "item.3.2=0\n"+    #-- Titanium Backup
+	  "item.3.3=0\n"     #-- OI Fileexplorer
+  );
+###
+# 3.b - If installation type IS "Custom", show App selection view.
+#
+else
+  checkbox(
+    #-- Title
+      "Customize Your Installation",
+	  
+    #-- Sub Title
+      "Select the Apps you want to be installed: ",
+	  
+    #-- Icon: <AROMA Resource Dir>/icons/personalize.png or <ThemeDir>/icon.personalize.png
+      "@personalize",
+	  
+    #-- Will be saved in /tmp/aroma/customize.prop
+      "customize.prop",
+	  
+	  #------------------------------------------------[ Checkbox Without Group ]----------------------------------------------#
+	  # TITLE            |  SUBTITLE                                                                           | Initial Value #
+	  #------------------+-------------------------------------------------------------------------------------+---------------#
+
+	  "Optional System Apps", "",                                                                                  2,  #-- Group 1. key = "item.1.x"
+	    "Calendar",           "Filesize: 1.56 mb",                                                                 1,      #-- item.1.1 = Selected by default
+		"Email",              "Filesize: 2.89 mb",                                                                 1,      #-- item.1.2 = Selected by default
+	    "Live-Wallpapers",    "Filesize: 2.80 mb",                                                                 1,      #-- item.1.3 = Selected by default
+		"ThemeChooser+Themes","Filesize: 3.14 mb",                                                                 1,      #-- item.1.4 = Selected by default
+	    "Video Editor",       "Filesize: 4.61 mb",                                                                 1,      #-- item.1.5 = Selected by default  
+	  
+	  "Google Apps",          "",                                                                                  2,  #-- Group 2. key = "item.2.x"
+	    "Gallery",            "Filesize: 1.98 mb",                                                                 1,      #-- item.2.1  = Selected by default
+		"Genie Widget",       "Filesize: 1.08 mb",                                                                 0,      #-- item.2.2  = Un-Selected by default
+		"Gmail",              "Filesize: 2.67 mb",                                                                 0,      #-- item.2.3  = Un-Selected by default
+	    "Google Maps",        "Filesize: 6.45 mb",                                                                 0,      #-- item.2.4  = Un-Selected by default
+	    "Google Talk",        "Filesize: 1.58 mb",                                                                 0,      #-- item.2.5  = Un-Selected by default
+	    "Google TTS Engine",  "Filesize: 4.12 mb",                                                                 1,      #-- item.2.6  = Selected by default
+		"Google Voice",       "Filesize: 4.53 mb",                                                                 0,      #-- item.2.7  = Un-Selected by default
+	    "Market/Play Store",  "Filesize: 3.82 mb",                                                                 1,      #-- item.2.8  = Selected by default
+	    "Play Music",         "Filesize: 5.08 mb",                                                                 0,      #-- item.2.9  = Un-Selected by default
+		"Quick Search Box",   "Filesize: 583 kb",                                                                  0,      #-- item.2.10 = Un-Selected by default		
+		"Voice-Search",       "Filesize: 1.76 mb",                                                                 0,      #-- item.2.11 = Un-Selected by default
+		"YouTube",            "Filesize: 3.63 mb",                                                                 0,      #-- item.2.12 = Un-Selected by default
+		
+	  "3rd Party Apps",       "",                                                                                  2,  #-- Group 3. key = "item.3.x"
+	    "ROM Manager",        "Filesize: 2.48 mb",                                                                 0,      #-- item.3.1 = Un-Selected by default
+	    "Titanium Backup",    "Filesize: 5.12 mb",                                                                 0,      #-- item.3.2 = Un-Selected by default
+	    "OI Fileexplorer",    "Filesize: 723 kb",                                                                  0       #-- item.3.3 = Un-Selected by default
+		
+	  #--------[ Initial Value = 0: Unselected, 1: Selected, 2: Group Item, 3: Not Visible ]---------#
+  );
+endif;
+
+###################################################################################################################
+#
+# STEP 4 - SHOW CHECKBOX - SET WIPE FLAGS (PROP VALUES)
+#
+checkbox(
+  "System Cleanup Menu",
+  "Select cleanup options you want to perform during installation.\n\n"+
+  "<b>REMINDER - USE WITH CAUTION !!!</b>",
+  "@alert",
+  "passion_cleanup.prop",
+  
+  "Select options",    			"",		        	  										2,
+  "Wipe data/factory Reset",    "Do Factory Reset - Clear Data and Cache",  				1,
+  "Format EXT3/4 Partition",    "Formating EXT3/4 partition",	    				  		0
+
+);
+
+#-- Change confirm button value from "Next >" to "Install Now".
+ini_set("text_next", "Install Now");
+
+###################################################################################################################
+#
+# STEP 5 - SHOW VIEWBOX - CONFIRM INSTALLATION
+#
+viewbox(
+  #-- Title
+    "Confirm selection",
+
+  #-- Text
+    "The wizard is ready to begin installation.\n\n"+
+	"Press <b>Install Now</b> to begin the installation.\n\n"+
+	"If you want to review or change any of your installation settings, press <b>Back</b>.\n\n"+
+	"To abort installation, press Menu Key -> Quit Installation.",
+
+  #-- Icon
+    "@install"
+);
+
+#-- Change confirm button value back from "Install Now" to "Finish".
+ini_set("text_next", "Finish");
+
+###################################################################################################################
+#
+# STEP 5 - INSTALL
+#
+setvar("retstatus",
+  install(
+	#-- Title
+      "Installing",
+	
+	#-- Installation Process message
+	  "Installing <b>"+ini_get("rom_name")+"</b>...",
+	
+	#-- Installation Icon
+      "@install",
+	
+	#-- Installation Finish Message
+      "<b>"+ini_get("rom_name")+"</b> successfully installed."
+  )
+);
+
+###################################################################################################################
+#
+# STEP 6 - SHOW CHECKVIEWBOX - EXIT TO RECOVERY, OR REBOOT SYSTEM
+#
+checkviewbox(
+  #-- Title
+    "Installation completed!",
+  
+  #-- Text
+    "<#selectbg_g><b>Congratulation...</b></#>\n\n"+
+    "<b>"+ini_get("rom_name")+"</b> have been installed on your Nexus One.\n\n",
+	
+  #-- Icon
+    "@welcome",
+
+  #-- Checkbox Text
+    "Reboot your device now.",
+
+  #-- Initial Checkbox value ( 0=unchecked, 1=checked ) -  (Optional, default:0)
+    "1",
+
+  #-- Save checked value in variable "reboot_it" (Optional)
+    "reboot_it"
+);
+
+##
+# Check if reboot checkbox was checked
+#
+if
+  getvar("reboot_it")=="1"
+then
+  reboot("onfinish");
+endif;
+
+#---- FINISH

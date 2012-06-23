@@ -1,0 +1,33 @@
+﻿### LANGUAGE STRING RESOURCE FILE
+#
+#   Language  : English
+#   By        : Bexton
+#
+
+#
+#--- COMMON SYSTEM STRING RESOURCE
+#
+text_ok=OK
+text_next=Next >
+text_back=< Back
+text_yes=Yes
+text_no=No
+text_about=About
+text_calibrating=Calibrating Tool
+text_quit=Quit Installation
+text_quit_msg=Are you sure to quit the installer?
+
+#
+#-- CUSTOM STRING RESOURCE
+#
+common.for=for
+
+welcome.title=Evervolv AOSP ICS Installer
+welcome.text1=You are about to install
+welcome.text2=Thank you for choosing Evervolv for your Google Nexus One.
+welcome.text3=Please visit us at #evervolv on irc.freenode.net.
+welcome.text4=Follow @preludedrew for the latest Evervolv updates.
+welcome.text5=Get the latest ROM at www.evervolv.com.
+welcome.version=VERSION
+welcome.updated=RELEASE
+welcome.next=Press Next to start the installer.
