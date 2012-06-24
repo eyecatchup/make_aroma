@@ -66,8 +66,8 @@ calibrate("7.80","28","7.80","28"); # calibration data for passion device
 ini_set("rom_name",             "Evervolv AOSP ICS");
 ini_set("rom_author",           "Evervolv");
 ini_set("rom_device",           "passion");
-ini_set("rom_date",             "June, 9 2012");
-ini_set("rom_version",          "2.2.0a4"); # actually this is the installer version
+ini_set("rom_date",             "June, 23 2012");
+ini_set("rom_version",          "2.2.0a5");
 
 ##
 # Set Small Font to Support all fonts
@@ -163,18 +163,17 @@ if (prop("type.prop","selected")!="2") then
 	  "item.1.4=1\n"+    #-- Theme Chooser + Themes
 	  "item.1.5=1\n"+    #-- Video Editor	  
 	  
-	  "item.2.1=0\n"+    #-- Gallery
-	  "item.2.2=0\n"+    #-- Genie Widget
-	  "item.2.3=0\n"+    #-- Gmail
-	  "item.2.4=0\n"+    #-- Google Maps
-	  "item.2.5=0\n"+    #-- Google Talk
-	  "item.2.6=0\n"+    #-- Google TTS Engine
-	  "item.2.7=0\n"+    #-- Google Voice
-	  "item.2.8=0\n"+    #-- Market/Play Store
-	  "item.2.9=0\n"+    #-- Play Music
-	  "item.2.10=0\n"+   #-- Quick Search
-	  "item.2.11=0\n"+   #-- Voice Search
-	  "item.2.12=0\n"+   #-- YouTube
+	  "item.2.1=0\n"+    #-- Genie Widget
+	  "item.2.2=0\n"+    #-- Gmail
+	  "item.2.3=0\n"+    #-- Google Maps
+	  "item.2.4=0\n"+    #-- Google Talk
+	  "item.2.5=0\n"+    #-- Google TTS Engine
+	  "item.2.6=0\n"+    #-- Google Voice
+	  "item.2.7=0\n"+    #-- Market/Play Store
+	  "item.2.8=0\n"+    #-- Play Music
+	  "item.2.9=0\n"+    #-- Quick Search
+	  "item.2.10=0\n"+   #-- Voice Search
+	  "item.2.11=0\n"+   #-- YouTube
 	  
 	  "item.3.1=0\n"+    #-- ROM Manager
 	  "item.3.2=0\n"+    #-- Titanium Backup
@@ -209,18 +208,17 @@ else
 	    "Video Editor",       "Filesize: 4.61 mb",                                                                 1,      #-- item.1.5 = Selected by default  
 	  
 	  "Google Apps",          "",                                                                                  2,  #-- Group 2. key = "item.2.x"
-	    "Gallery",            "Filesize: 1.98 mb",                                                                 1,      #-- item.2.1  = Selected by default
-		"Genie Widget",       "Filesize: 1.08 mb",                                                                 0,      #-- item.2.2  = Un-Selected by default
-		"Gmail",              "Filesize: 2.67 mb",                                                                 0,      #-- item.2.3  = Un-Selected by default
-	    "Google Maps",        "Filesize: 6.45 mb",                                                                 0,      #-- item.2.4  = Un-Selected by default
-	    "Google Talk",        "Filesize: 1.58 mb",                                                                 0,      #-- item.2.5  = Un-Selected by default
-	    "Google TTS Engine",  "Filesize: 4.12 mb",                                                                 1,      #-- item.2.6  = Selected by default
-		"Google Voice",       "Filesize: 4.53 mb",                                                                 0,      #-- item.2.7  = Un-Selected by default
-	    "Market/Play Store",  "Filesize: 3.82 mb",                                                                 1,      #-- item.2.8  = Selected by default
-	    "Play Music",         "Filesize: 5.08 mb",                                                                 0,      #-- item.2.9  = Un-Selected by default
-		"Quick Search Box",   "Filesize: 583 kb",                                                                  0,      #-- item.2.10 = Un-Selected by default		
-		"Voice-Search",       "Filesize: 1.76 mb",                                                                 0,      #-- item.2.11 = Un-Selected by default
-		"YouTube",            "Filesize: 3.63 mb",                                                                 0,      #-- item.2.12 = Un-Selected by default
+		"Genie Widget",       "Filesize: 1.08 mb",                                                                 0,      #-- item.2.1  = Un-Selected by default
+		"Gmail",              "Filesize: 2.67 mb",                                                                 0,      #-- item.2.2  = Un-Selected by default
+	    "Google Maps",        "Filesize: 6.45 mb",                                                                 0,      #-- item.2.3  = Un-Selected by default
+	    "Google Talk",        "Filesize: 1.58 mb",                                                                 0,      #-- item.2.4  = Un-Selected by default
+	    "Google TTS Engine",  "Filesize: 4.12 mb",                                                                 1,      #-- item.2.5  = Selected by default
+		"Google Voice",       "Filesize: 4.53 mb",                                                                 0,      #-- item.2.6  = Un-Selected by default
+	    "Market/Play Store",  "Filesize: 3.82 mb",                                                                 1,      #-- item.2.7  = Selected by default
+	    "Play Music",         "Filesize: 5.08 mb",                                                                 0,      #-- item.2.8  = Un-Selected by default
+		"Quick Search Box",   "Filesize: 583 kb",                                                                  0,      #-- item.2.9  = Un-Selected by default		
+		"Voice-Search",       "Filesize: 1.76 mb",                                                                 0,      #-- item.2.10 = Un-Selected by default
+		"YouTube",            "Filesize: 3.63 mb",                                                                 0,      #-- item.2.11 = Un-Selected by default
 		
 	  "3rd Party Apps",       "",                                                                                  2,  #-- Group 3. key = "item.3.x"
 	    "ROM Manager",        "Filesize: 2.48 mb",                                                                 0,      #-- item.3.1 = Un-Selected by default

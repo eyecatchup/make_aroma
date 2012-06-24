@@ -141,26 +141,15 @@ if
    file_getprop("/tmp/aroma/customize.prop","item.2.8") == "1" ||
    file_getprop("/tmp/aroma/customize.prop","item.2.9") == "1" ||
    file_getprop("/tmp/aroma/customize.prop","item.2.10") == "1" ||
-   file_getprop("/tmp/aroma/customize.prop","item.2.11") == "1" ||
-   file_getprop("/tmp/aroma/customize.prop","item.2.12") == "1"
+   file_getprop("/tmp/aroma/customize.prop","item.2.11") == "1"
   )
 then
   package_extract_dir("optional_gapps/system", "/system");
 endif;
 
-#- Gallery
-if
-  file_getprop("/tmp/aroma/customize.prop","item.2.1") == "1"
-then
-  ui_print("    Installing Gallery");
-  package_extract_dir("optional_gapps/custom/gallery", "/system/app");
-else
-  ui_print("    Skipping Gallery...");
-endif;
-
 #- Genie Widget
 if
-  file_getprop("/tmp/aroma/customize.prop","item.2.2") == "1"
+  file_getprop("/tmp/aroma/customize.prop","item.2.1") == "1"
 then
   ui_print("    Installing Genie Widget");
   package_extract_dir("optional_gapps/custom/genie", "/system/app");
@@ -170,7 +159,7 @@ endif;
 
 #- Gmail
 if
-  file_getprop("/tmp/aroma/customize.prop","item.2.3") == "1"
+  file_getprop("/tmp/aroma/customize.prop","item.2.2") == "1"
 then
   ui_print("    Installing Gmail");
   package_extract_dir("optional_gapps/custom/gmail", "/system/app");
@@ -180,37 +169,40 @@ endif;
 
 #- Google Maps
 if
-  file_getprop("/tmp/aroma/customize.prop","item.2.4") == "1"
+  file_getprop("/tmp/aroma/customize.prop","item.2.3") == "1"
 then
   ui_print("    Installing Google Maps");
   package_extract_dir("optional_gapps/custom/maps", "/system/app");
+  package_extract_dir("optional_gapps/custom/_lib/tts", "/system/lib");
 else
   ui_print("    Skipping Google Maps...");
 endif;
 
 #- Google Talk
 if
-  file_getprop("/tmp/aroma/customize.prop","item.2.5") == "1"
+  file_getprop("/tmp/aroma/customize.prop","item.2.4") == "1"
 then
   ui_print("    Installing Google Talk");
   package_extract_dir("optional_gapps/custom/talk", "/system/app");
+  package_extract_dir("optional_gapps/custom/_lib/talk", "/system/lib");
 else
   ui_print("    Skipping Google Talk...");
 endif;
 
 #- Google TTS Engine
 if
-  file_getprop("/tmp/aroma/customize.prop","item.2.6") == "1"
+  file_getprop("/tmp/aroma/customize.prop","item.2.5") == "1"
 then
   ui_print("    Installing Google TTS Engine");
   package_extract_dir("optional_gapps/custom/tts", "/system/app");
+  package_extract_dir("optional_gapps/custom/_lib/tts", "/system/lib");
 else
   ui_print("    Skipping Google TTS Engine...");
 endif;
 
 #- Google Voice
 if
-  file_getprop("/tmp/aroma/customize.prop","item.2.7") == "1"
+  file_getprop("/tmp/aroma/customize.prop","item.2.6") == "1"
 then
   ui_print("    Installing Google Voice");
   package_extract_dir("optional_gapps/custom/voice", "/system/app");
@@ -220,7 +212,7 @@ endif;
 
 #- Market/Play Store
 if
-  file_getprop("/tmp/aroma/customize.prop","item.2.8") == "1"
+  file_getprop("/tmp/aroma/customize.prop","item.2.7") == "1"
 then
   ui_print("    Installing Market/Play Store");
   package_extract_dir("optional_gapps/custom/market", "/system/app");
@@ -230,7 +222,7 @@ endif;
 
 #- Play Music
 if
-  file_getprop("/tmp/aroma/customize.prop","item.2.9") == "1"
+  file_getprop("/tmp/aroma/customize.prop","item.2.8") == "1"
 then
   ui_print("    Installing Play Music");
   package_extract_dir("optional_gapps/custom/music", "/system/app");
@@ -240,7 +232,7 @@ endif;
 
 #- Quick Search
 if
-  file_getprop("/tmp/aroma/customize.prop","item.2.10") == "1"
+  file_getprop("/tmp/aroma/customize.prop","item.2.9") == "1"
 then
   ui_print("    Installing Quick Search");
   package_extract_dir("optional_gapps/custom/quicksearch", "/system/app");
@@ -250,7 +242,7 @@ endif;
 
 #- Voice Search
 if
-  file_getprop("/tmp/aroma/customize.prop","item.2.11") == "1"
+  file_getprop("/tmp/aroma/customize.prop","item.2.10") == "1"
 then
   ui_print("    Installing Voice Search");
   package_extract_dir("optional_gapps/custom/voicesearch", "/system/app");
@@ -260,7 +252,7 @@ endif;
 
 #- YouTube
 if
-  file_getprop("/tmp/aroma/customize.prop","item.2.12") == "1"
+  file_getprop("/tmp/aroma/customize.prop","item.2.11") == "1"
 then
   ui_print("    Installing YouTube");
   package_extract_dir("optional_gapps/custom/yt", "/system/app");
